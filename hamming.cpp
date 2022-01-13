@@ -1,21 +1,24 @@
 #include<iostream>
- 
 using namespace std;
- 
-int main() {
+class hamming
+{ 
     int data[10];
     int dataatrec[10],c,c1,c2,c3,i;
- 
+    public:
+    void getdata()
+{
     cout<<"Enter 4 bits of data one by one\n";
-    cin>>data[0];
-    cin>>data[1];
     cin>>data[2];
     cin>>data[4];
- 
+    cin>>data[5];
+    cin>>data[6];
+}
+ void parity( )
+{
     //Calculation of even parity
-data[6]=data[0]^data[2]^data[4];
-data[5]=data[0]^data[1]^data[4];
-data[3]=data[0]^data[1]^data[2];
+data[0]=data[6]^data[4]^data[2];
+data[1]=data[6]^data[5]^data[2];
+data[3]=data[6]^data[5]^data[4];
  
 cout<<"\nEncoded data is\n";
 for(i=0;i<7;i++)
@@ -34,8 +37,8 @@ c=c3*4+c2*2+c1 ;
 cout<<"\nNo error while transmission of data\n";
     }
 else {
-cout<<"\nError on position "<<c;
-cout<<"\nData sent : ";
+cout<<"\nError on position "<<8-c;
+cout<<"\nData to be transmitted : ";
 for(i=0;i<7;i++)
          cout<<data[i];
         
@@ -44,7 +47,7 @@ cout<<"\nData received : ";
          cout<<dataatrec[i];
         
 cout<<"\nCorrect message is\n";
-        
+
 //if errorneous bit is 0 we complement it else vice versa
 if(dataatrec[7-c]==0)
 dataatrec[7-c]=1;
@@ -54,5 +57,12 @@ for (i=0;i<7;i++) {
 cout<<dataatrec[i];
 }
 }
+}
+};
+int main( )
+{
+  hamming h1;
+h1.getdata();
+h1.parity();
 return 0;
 }
